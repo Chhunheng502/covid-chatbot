@@ -9,7 +9,7 @@
     "keys": [
       "coronavirus"
     ],
-    "response": "Coronaviruses are a large family of viruses which may cause illness in animals or humans.\u00a0\n"
+    "response": "Coronaviruses are a large family of viruses which may cause illness in animals or humans.\n"
   },
   {
     "question": [
@@ -1574,28 +1574,6 @@
       "covid-19"
     ],
     "response": "No. As each international mass gathering is different, the factors to consider when determining if the event should be cancelled may also differ.\u00a0\n"
-  },
-  {
-    "question": [
-      "what",
-      "be",
-      "covid"
-    ],
-    "keys": [
-      "covid"
-    ],
-    "response": "COVID-19 is a disease caused by a virus called SARS-CoV-2. Most people with COVID-19 have mild symptoms, but some people become severely ill. Older adults and people who have certain underlying medical conditions are more likely to get severely ill.\n"
-  },
-  {
-    "question": [
-      "what",
-      "be",
-      "coronavirus"
-    ],
-    "keys": [
-      "coronavirus"
-    ],
-    "response": "Coronaviruses are a group of viruses belonging to the family of Coronaviridae, which infect both animals and humans.\n"
   },
   {
     "question": [

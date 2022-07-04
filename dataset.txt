@@ -168,10 +168,6 @@ How large does a meeting or event need to be in order to be a “mass gathering�
 An event counts as a “mass gatherings” if the number of people it brings together is so large that it has the potential to strain the planning and response resources of the health system in the community where it takes place. 
 Does WHO recommend that all international mass gatherings be cancelled because of COVID-19?
 No. As each international mass gathering is different, the factors to consider when determining if the event should be cancelled may also differ. 
-What is covid?
-COVID-19 is a disease caused by a virus called SARS-CoV-2. Most people with COVID-19 have mild symptoms, but some people become severely ill. Older adults and people who have certain underlying medical conditions are more likely to get severely ill.
-What is coronavirus?
-Coronaviruses are a group of viruses belonging to the family of Coronaviridae, which infect both animals and humans.
 What are the signs and symptoms of covid?
 Signs and symptoms include respiratory symptoms and include fever, cough and shortness of breath. In more severe cases, infection can cause pneumonia, severe acute respiratory syndrome and sometimes death.
 What are some of the ways by which COVID-19 is transmitted?

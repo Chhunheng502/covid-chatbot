@@ -1,12 +1,17 @@
-import re
 import json
-import nltk
-import preprocessing
 import logic_adapter
+import preprocessing
 
+minimum_similarity_threshold = 0.5
 
 def message_probability(user_message, recognised_words, single_response=False, required_words=[]):
     has_required_words = True
+
+    # Checks that the required words are in the string
+    for word in required_words:
+        if word not in user_message:
+            has_required_words = False
+            break
 
     if has_required_words or single_response:
         return logic_adapter.cosine_similarity(user_message, recognised_words)
@@ -15,31 +20,26 @@ def message_probability(user_message, recognised_words, single_response=False, r
 
 
 def check_all_messages(message):
-    highest_prob_list = {}
-
-    # Simplifies response creation / adds it to the dict
-    def response(bot_response, list_of_words, single_response=False, required_words=[]):
-        nonlocal highest_prob_list
-        highest_prob_list[bot_response] = message_probability(message, list_of_words, single_response, required_words)
-
+    highest_prob_list = []
     dataset = json.loads(open('dataset.json', 'r').read())
 
     for data in dataset:
+        probability = message_probability(message, data['question'], single_response=True)
+        if (probability > minimum_similarity_threshold):
+            highest_prob_list.append({
+                'response': data['response'],
+                'probability': probability
+            })
 
-        response(data['response'], data['question'], single_response=True)
+    best_match = max(highest_prob_list, key=lambda ev: ev['probability'])
+    # print(*highest_prob_list, sep='\n\n')
+    # print(best_match)
 
-    best_match = max(highest_prob_list, key=highest_prob_list.get)
-    # print(highest_prob_list)
-    print(f'Best match = {best_match} | Score: {highest_prob_list[best_match]}')
-
-    # 0.5 is minimum similarity threshold
-    return 'Could you please re-phrase that?' if highest_prob_list[best_match] < 0.5  else best_match
+    return 'Could you please re-phrase that?' if best_match['probability'] < minimum_similarity_threshold  else best_match['response']
 
 
-# Used to get the response
 def get_response(user_input):
     split_message = preprocessing.run(user_input)
-    print(split_message)
     response = check_all_messages(split_message)
     return response
 

@@ -1,14 +1,7 @@
 import math
 from collections import Counter
-
-def proportional_similarity(list1, list2):
-    confidence_level = 0
-    for word in list1:
-        if word in list2:
-            confidence_level += 1
-
-    return float(confidence_level) / float(len(list2))
-
+import numpy as np
+import Levenshtein as lev
 
 def cosine_similarity(list1, list2):
     list1, list2 = Counter(list1), Counter(list2)
@@ -20,19 +13,25 @@ def cosine_similarity(list1, list2):
     return dotprod / (magA * magB)
 
 def length_similarity(list1, list2):
-    lenlist1 = sum(list1.values())
-    lenlist2 = sum(list2.values())
-
-    return min(lenlist1, lenlist2) / float(max(lenlist1, lenlist2))
-
-def similarity_score(list1, list2):
     list1, list2 = Counter(list1), Counter(list2)
-    return length_similarity(list1, list2) * cosine_similarity(list1, list2)
+    lenlist1, lenlist2 = sum(list1.values()), sum(list2.values())
 
-# def euclidean_distance(list1, list2):
-#     list1, list2 = Counter(list1), Counter(list2)
-#     print(list1, list2)
-#     squares = [(p-q) ** 2 for p, q in zip(list1.values(), list2.values())]
+    return (min(lenlist1, lenlist2) / float(max(lenlist1, lenlist2))) * cosine_similarity(list1, list2)
 
-#     return sum(squares) ** .5
+def jaccard_similarity(list1, list2):
+    intersection = len(list(set(list1).intersection(list2)))
+    union = (len(list1) + len(list2)) - intersection
+
+    return float(intersection) / union
+
+def euclidean_distance(list1, list2):
+    list1, list2 = Counter(list1), Counter(list2)
+    terms = set(list1).union(list2)
+    list1 = [list1.get(k, 0) for k in terms]
+    list2 = [list2.get(k, 0) for k in terms]
+
+    return np.linalg.norm(np.array(list1) - np.array(list2))
+
+def levenshtein_distance(list1, list2):
+    return lev.seqratio(list1, list2)
 
