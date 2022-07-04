@@ -1,0 +1,18 @@
+TODO Create fake json api server
+
+TODO lemm something... (add sanitize methods or other features as much as possible)
+
+TODO write an algorithm to compare key input to key term in text not just question
+
+TODO symnonym checking covid-19 == coronavirus (add optional symnonym to key and modify code)
+
+TODO phraphase checking (use api or code => make another attibute as 'similar_questions')
+=> do this when no response or similarity is lower than the allowed threshold
+
+TODO explain preprocessing (clean up process) in your slide and required functions
+
+TODO comment your code !!!
+
+TODO must lemmatize your user input as well
+
+FIXME use different algirithm to compute
