@@ -2,7 +2,7 @@ import json
 import logic_adapter
 import preprocessing
 
-minimum_similarity_threshold = 0.5
+minimum_similarity_threshold = 0.1
 
 def message_probability(user_message, recognised_words, single_response=False, required_words=[]):
     has_required_words = True
@@ -20,7 +20,11 @@ def message_probability(user_message, recognised_words, single_response=False, r
 
 
 def check_all_messages(message):
-    highest_prob_list = []
+    highest_prob_list = [{
+        'response': '',
+        'probability': 0
+    }]
+    
     dataset = json.loads(open('dataset.json', 'r').read())
 
     for data in dataset:
@@ -32,7 +36,7 @@ def check_all_messages(message):
             })
 
     best_match = max(highest_prob_list, key=lambda ev: ev['probability'])
-    # print(*highest_prob_list, sep='\n\n')
+    print(*highest_prob_list, sep='\n\n')
     # print(best_match)
 
     return 'Could you please re-phrase that?' if best_match['probability'] < minimum_similarity_threshold  else best_match['response']
@@ -46,4 +50,4 @@ def get_response(user_input):
 
 # Testing the response system
 while True:
-    print('Bot: ' + get_response(input('You: ')))
+    print('\nBot: ' + get_response(input('You: ')))
